@@ -7,10 +7,16 @@ namespace Busines.Abstract
 {
     public interface ICarService
     {
-        List<Car> GetAll();
-        List<Car> GetByBrandId();
-        List<Car> GetAllByBrand();
-        List<Car> GetAllDescription();
+        List<Car> GetAll(); //Her bilgiyi getir.
+        List<Car> GetCarsByBrandId(int id); // Marka Id'sine göre getir.
+        List<Car> GetCarsByColorId(int id); //Renk Id'sine göre getir.
+        List<Car> GetCarsByDailyPrice(decimal min, decimal max);
+        List<Car> GetCarsAllByBrand(); // Markaya göre getir.
+        List<Car> GetCarsAllDescription(); // Bütün bilgileri getir.
+        void Add(Car car);
+        void Delete(Car car);
+        void Update(Car car);
+
 
     }
 }

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Entities.Abstract
+namespace Busines.Abstract
 {
-    public interface IEntitiy
+    public interface IBrandService
     {
     }
 }

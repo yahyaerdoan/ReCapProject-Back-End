@@ -17,24 +17,66 @@ namespace Busines.Concrete
             _carDal = carDal;
         }
 
+        public void Add(Car car)
+        {
+            if (car.Name == null|| car.Name.Length< 2)
+            {
+                Console.WriteLine("Eklediğiniz aracın ismi minimum 2 karakter olmalıdır!");
+
+            }
+            else if (car.DailyPrice <= 0)
+            {
+                Console.WriteLine("Eklediğiniz aracın günlük fiyatı 0'dan büyük lmalıdır!");
+            }           
+            else
+            {
+                _carDal.Add(car);
+                Console.WriteLine("Araç Eklendi"); 
+            }
+        } //eğer aracın isim karakteri 2den küçükse ekleme
+        // eğer dailyprice 0dan küçükse ekleme
+
+        public void Delete(Car car)
+        {
+            _carDal.Delete(car);
+            Console.WriteLine("Araç Silindi.");
+        }
+
         public List<Car> GetAll()
+        {
+            return _carDal.GetAll();
+
+        }
+                
+        public List<Car> GetCarsAllByBrand()
         {
             return _carDal.GetAll();
         }
 
-        public List<Car> GetAllByBrand()
+        public List<Car> GetCarsAllDescription()
         {
-            return _carDal.GetAllByBrand();
+            return _carDal.GetAll();
         }
 
-        public List<Car> GetAllDescription()
+        public List<Car> GetCarsByBrandId(int id)
         {
-            return _carDal.GetAllDescription();
+            return _carDal.GetAll(c => c.BrandId == id);
         }
 
-        public List<Car> GetByBrandId()
+        public List<Car> GetCarsByColorId(int id)
         {
-            return _carDal.GetByBrandId();
+            return _carDal.GetAll(c => c.ColorId == id);
+        }
+
+        public List<Car> GetCarsByDailyPrice(decimal min, decimal max)
+        {
+            return _carDal.GetAll(c => c.DailyPrice >= min && c.DailyPrice <= max);
+        }
+
+        public void Update(Car car)
+        {
+            _carDal.Update(car);
+            Console.WriteLine("Araç Güncellendi!");
         }
     }
 }

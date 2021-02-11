@@ -2,6 +2,7 @@
 using DateAccess.Abstract;
 using DateAccess.Concrete.InMemory;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -26,7 +27,7 @@ namespace Busines.Concrete
             }
             else if (car.DailyPrice <= 0)
             {
-                Console.WriteLine("Eklediğiniz aracın günlük fiyatı 0'dan büyük lmalıdır!");
+                Console.WriteLine("Eklediğiniz aracın günlük fiyatı 0'dan büyük olmalıdır!");
             }           
             else
             {
@@ -47,7 +48,17 @@ namespace Busines.Concrete
             return _carDal.GetAll();
 
         }
-                
+
+        public Car GetCarById(int id)
+        {
+            return _carDal.Get(c => c.Id == id);
+        }
+
+        public List<CarDetailDto> GetCarDetails()
+        {
+            return _carDal.GetCarDetails();
+        }
+
         public List<Car> GetCarsAllByBrand()
         {
             return _carDal.GetAll();

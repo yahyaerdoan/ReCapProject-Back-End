@@ -1,5 +1,6 @@
 ﻿//using DateAccess.Abstract;
 //using Entities.Concrete;
+//using Entities.DTOs;
 //using System;
 //using System.Collections.Generic;
 //using System.Linq;
@@ -13,8 +14,8 @@
 //        List<Car> _cars;
 //        public InMemoryCarDal()
 //        {
-//            _cars = new List<Car> 
-//            { 
+//            _cars = new List<Car>
+//            {
 //                new Car {Id = 1, Brand = "Renault", Name = "Renault Clio 1.5", BrandId = 1, Class = "Ekonomik", ColorId = 1, ModelYear ="2017", DailyPrice = 201.07M, Description = "Dizel/Benzin, Manuel, 500.00 Tl Depozito, 500KM, 21 Yaş Üstü, Ehliyet Yaşı 1 ve Üzeri, 1 Kredi Kartı"},
 //                new Car {Id = 2, Brand = "Renault", Name = "Renault Clio AT 1.5", BrandId = 1, Class = "Ekonomik", ColorId = 1, ModelYear ="2018", DailyPrice = 228.97M, Description = "Dizel/Benzin, Otomatik, 500.00 Tl Depozito, 500KM,21 Yaş Üstü"},
 //                new Car {Id = 3, Brand = "Fiat", Name = "Fiat Egea", BrandId = 2, Class = "Ekonomik", ColorId = 1, ModelYear ="2016", DailyPrice = 245.1M, Description = "Dizel/Benzin, Otomatik, 750.00 Tl Depozito, 500KM, 21 Yaş Üstü"},
@@ -28,7 +29,7 @@
 
 //            };
 //        }
-        
+
 //        public void Add(Car car)
 //        {
 //            _cars.Add(car);
@@ -36,7 +37,7 @@
 
 //        public void Delete(Car car)
 //        {
-//            Car carToDelete = _cars.SingleOrDefault(c=> c.BrandId == c.BrandId);
+//            Car carToDelete = _cars.SingleOrDefault(c => c.BrandId == c.BrandId);
 //            _cars.Remove(carToDelete);
 //        }
 
@@ -58,7 +59,7 @@
 //        public List<Car> GetAllByBrand(string brand)
 //        {
 //            return _cars.Where(c => c.Brand == brand).ToList();
-           
+
 //        }
 
 //        public List<Car> GetAllByBrand()
@@ -80,16 +81,21 @@
 //            return _cars.Where(c => c.BrandId == brandId).ToList();
 //        }
 
+//        public List<CarDetailDto> GetCarDetails()
+//        {
+//            throw new NotImplementedException();
+//        }
+
 //        public void Update(Car car)
 //        {
 //            Car carToUpdate = _cars.SingleOrDefault(c => c.BrandId == c.BrandId);
 //            carToUpdate.Name = car.Name;
 //            carToUpdate.Id = car.Id;
-//            carToUpdate.Description = car.Description;           
+//            carToUpdate.Description = car.Description;
 //            carToUpdate.ColorId = car.ColorId;
 //            carToUpdate.DailyPrice = car.DailyPrice;
 //            carToUpdate.ModelYear = car.ModelYear;
-           
+
 //        }
 //    }
 //}

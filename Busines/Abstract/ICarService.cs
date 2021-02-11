@@ -21,5 +21,7 @@ namespace Busines.Abstract
 
         List<CarDetailDto> GetCarDetails();
 
+
+
     }
 }

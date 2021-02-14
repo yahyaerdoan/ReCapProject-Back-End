@@ -6,7 +6,7 @@ using System.Text;
 
 namespace DateAccess.Abstract
 {
-    public interface IColorDal : IEntityRepository<Color>
-    {       
+    public interface IUserDal : IEntityRepository<User>
+    {
     }
 }

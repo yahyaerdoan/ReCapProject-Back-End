@@ -1,4 +1,6 @@
 ﻿using Busines.Abstract;
+using Busines.Constants;
+using Core.Utilities.Results;
 using DateAccess.Abstract;
 using Entities.Concrete;
 using System;
@@ -16,32 +18,32 @@ namespace Busines.Concrete
             _brandDal = brandDal;
         }
 
-        public void Add(Brand brand)
+        public IResult Add(Brand brand)
         {
             _brandDal.Add(brand);
-            Console.WriteLine("Marka Eklendi!");
+            return new SuccessResult(Messages.BrandAdded);
         }
 
-        public void Delete(Brand brand)
+        public IResult Delete(Brand brand)
         {
             _brandDal.Add(brand);
-            Console.WriteLine("Marka Silindi!");
+            return new SuccessResult(Messages.BrandDeleted);
         }
 
-        public List<Brand> GetAll()
+        public IDataResult<List<Brand>> GetAll()
         {
-            return _brandDal.GetAll();
+            return new SuccessDataResult<List<Brand>>(_brandDal.GetAll());
         }
 
-        public Brand GetCarsByBrandId(int id)
+        public IDataResult<Brand> GetCarsByBrandId(int id)
         {
-            return _brandDal.Get(c => c.BrandId == id);
+            return new SuccessDataResult<Brand>(_brandDal.Get(c => c.BrandId == id));
         }
 
-        public void Update(Brand brand)
+        public IResult Update(Brand brand)
         {
             _brandDal.Update(brand);
-            Console.WriteLine("Marka Güncellendi!");
+            return new SuccessResult(Messages.BrandUpdated);
         }
     }
 }

@@ -9,7 +9,6 @@ using System.Text;
 namespace DateAccess.Concrete.EntitiyFrameWork
 {
     public class EfColorDal : EfEntityRepositoryBase<Color, ReCapDataBasesContext>, IColorDal
-    {
-       
+    {       
     }
 }

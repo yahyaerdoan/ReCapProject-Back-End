@@ -1,0 +1,48 @@
+﻿using Core.DataAccess.EntityFramework;
+using DateAccess.Abstract;
+using DateAccess.Concrete.EntitiyFrameWork;
+using Entities.Concrete;
+using Entities.DTOs;
+using System;
+using System.Linq;
+using System.Collections.Generic;
+using System.Text;
+
+namespace DateAccess.Concrete.EntityFrameWork
+{
+    public class EfRentalDal : EfEntityRepositoryBase<Rental, ReCapDataBasesContext>, IRentalDal
+    {
+        public List<RentalDetailDto> GetRentalDetails()
+        {
+            using (ReCapDataBasesContext context = new ReCapDataBasesContext())
+            {
+                var result = from c in context.Cars
+                             join r in context.Rentals
+                             on c.Id equals r.CarId
+                             join b in context.Brands
+                             on c.BrandId equals b.BrandId
+                             join cstmr in context.Customers
+                             on r.CustomerId equals cstmr.UserId
+                             join u in context.Users
+                             on cstmr.UserId equals u.Id
+                             select new RentalDetailDto
+                             {
+                                 Id = r.Id,
+                                 Name = b.BrandName,
+                                 FirstName = u.FirstName,
+                                 LastName = u.LastName,
+                                 CompanyName = cstmr.CompanyName,
+                                 RentDate = r.RentDate,
+                                 ReturnDate = r.ReturnDate,
+
+                             };
+
+
+
+
+                           return result.ToList();
+
+            }
+        }
+    }
+}

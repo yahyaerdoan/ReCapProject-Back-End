@@ -26,8 +26,13 @@ namespace DateAccess.Concrete.EntitiyFrameWork
                              { 
                                  Id = ca.Id,
                                  Name = ca.Name,
+                                 BrandId = br.BrandId,
+                                 BrandModel= br.BrandName,
+                                 ColorId = co.ColorId,
                                  BrandName = br.BrandName,
                                  ColorName = co.ColorName,
+                                 DailyPrice = ca.DailyPrice,
+                                 Description = ca.Description
                              };
                 return result.ToList();
             }

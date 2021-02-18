@@ -1,6 +1,5 @@
 ﻿using Core.DataAccess.EntityFramework;
 using DateAccess.Abstract;
-using DateAccess.Concrete.EntitiyFrameWork;
 using Entities.Concrete;
 using Entities.DTOs;
 using System;
@@ -18,17 +17,17 @@ namespace DateAccess.Concrete.EntityFrameWork
             {
                 var result = from c in context.Cars
                              join r in context.Rentals
-                             on c.Id equals r.CarId
+                             on c.CarId equals r.CarId
                              join b in context.Brands
                              on c.BrandId equals b.BrandId
                              join cstmr in context.Customers
-                             on r.CustomerId equals cstmr.UserId
+                             on r.CustomerId equals cstmr.CustomerId
                              join u in context.Users
-                             on cstmr.UserId equals u.Id
+                             on cstmr.CustomerId equals u.UserId
                              select new RentalDetailDto
                              {
-                                 Id = r.Id,
-                                 Name = b.BrandName,
+                                 CarId = r.RentalId,
+                                 CarName = b.BrandName,
                                  FirstName = u.FirstName,
                                  LastName = u.LastName,
                                  CompanyName = cstmr.CompanyName,

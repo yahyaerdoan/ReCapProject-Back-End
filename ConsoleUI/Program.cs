@@ -1,6 +1,5 @@
 ﻿
 using Busines.Concrete;
-using DateAccess.Concrete.EntitiyFrameWork;
 using DateAccess.Concrete.EntityFrameWork;
 using DateAccess.Concrete.InMemory;
 using Entities.Concrete;
@@ -14,30 +13,41 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
+
+
             UserManager userManager = new UserManager(new EfUserDal());
-            User user = new User { FirstName = "Barış", LastName = "Balık", Email = "baba@gmail.com", Password = "bAerty" };
+            User user = new User { FirstName = "Namık", LastName = "Yılmaz", Email = "namik@gmail.com", Password = "BbAerty87765" };
             userManager.Add(user);
-
-
-            CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
-            customerManager.Add(new Customer { Id = (userManager.Get(user).Data.Id), CompanyName = " C Şirket" });
-
-
-
-
-            RentalManager rentalManager = new RentalManager(new EfRentalDal());
-            var result = rentalManager.GetRentalDetails();
+            var result = userManager.Add(user);
             foreach (var results in result.Message)
             {
                 Console.WriteLine(result.Message);
             }
 
-            rentalManager.Add(new Rental {CarId = 3004, CustomerId = 1, RentDate = new DateTime(2021, 02, 12), ReturnDate = new DateTime(2021, 02, 24) });
 
-            foreach (var results in result.Data)
+            CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+            customerManager.Add(new Customer { UserId = (userManager.Get(user).Data.UserId), CompanyName = " Güçü var  Şirket" });
+            var result1 = customerManager.GetAll();
+            foreach (var results in result1.Message)
+            {
+                Console.WriteLine(result1.Message);
+            }
+
+
+
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            var result2 = rentalManager.GetRentalDetails();
+            foreach (var results in result2.Message)
+            {
+                Console.WriteLine(result2.Message);
+            }
+
+            rentalManager.Add(new Rental { CarId = 3010, RentDate = new DateTime(2021, 02, 16) });
+
+            foreach (var results in result2.Data)
             {
                 Console.WriteLine("{0}|{1}|{2}|{3}|{4}|{5}",
-                    results.Id, results.Name, results.FirstName, results.LastName, results.CompanyName, results.RentDate, results.ReturnDate);
+                    results.CarId, results.CarName, results.FirstName, results.LastName, results.CompanyName, results.RentDate, results.ReturnDate);
             }
 
 

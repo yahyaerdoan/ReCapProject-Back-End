@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text;
 
-namespace DateAccess.Concrete.EntitiyFrameWork
+namespace DateAccess.Concrete.EntityFrameWork
 {
     public class EfBrandDal : EfEntityRepositoryBase<Brand, ReCapDataBasesContext>, IBrandDal
     {        

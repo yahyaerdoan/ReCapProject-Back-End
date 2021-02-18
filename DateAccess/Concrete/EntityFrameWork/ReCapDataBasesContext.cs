@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DateAccess.Concrete.EntitiyFrameWork
+namespace DateAccess.Concrete.EntityFrameWork
 {
     public class ReCapDataBasesContext : DbContext
     {

@@ -2,18 +2,17 @@
 using DateAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 
-namespace DateAccess.Concrete.EntitiyFrameWork
+namespace DateAccess.Concrete.EntityFrameWork
 {
     public class EfCarDal : EfEntityRepositoryBase<Car, ReCapDataBasesContext>, ICarDal
     {
-        public List<CarDetailDto> GetCarDetails()
+        public List<CarDetailDto> GetAllCarDetails()
         {
             using (ReCapDataBasesContext context = new ReCapDataBasesContext())
             {
@@ -24,8 +23,8 @@ namespace DateAccess.Concrete.EntitiyFrameWork
                              on ca.ColorId equals co.ColorId
                              select new CarDetailDto 
                              { 
-                                 Id = ca.Id,
-                                 Name = ca.Name,
+                                 CarId = ca.CarId,
+                                 CarName = ca.CarName,
                                  BrandId = br.BrandId,
                                  BrandModel= br.BrandName,
                                  ColorId = co.ColorId,

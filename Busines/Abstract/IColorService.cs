@@ -8,7 +8,7 @@ namespace Busines.Abstract
 {
     public interface IColorService
     {
-       IDataResult<Color> GetCarsByColorId(int id); //Renk Id'sine göre getir.
+       IDataResult<Color> GetByCarColorId(int id); //Renk Id'sine göre getir.
         IDataResult<List<Color>> GetAll();       
         IResult Add(Color color);
         IResult Delete(Color color);

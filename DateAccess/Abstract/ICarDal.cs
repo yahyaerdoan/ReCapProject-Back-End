@@ -9,7 +9,7 @@ namespace DateAccess.Abstract
 {
     public interface ICarDal : IEntityRepository<Car>
     {
-        List<CarDetailDto> GetCarDetails();
+        List<CarDetailDto> GetAllCarDetails();
 
 
     }

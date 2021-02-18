@@ -9,18 +9,17 @@ namespace Busines.Abstract
 {
     public interface ICarService
     {
-        IDataResult<Car> GetCarById(int id); //Ürüne dair detay getirir.
+        IDataResult<Car> GetByCarId(int id); //Ürüne dair detay getirir.
         IDataResult<List<Car>> GetAll(); //Her bilgiyi getir.
-        IDataResult<List<Car>> GetCarsByBrandId(int id); // Marka Id'sine göre getir.
-        IDataResult<List<Car>> GetCarsByColorId(int id); //Renk Id'sine göre getir.
-        IDataResult<List<Car>> GetCarsByDailyPrice(decimal min, decimal max);
-        IDataResult<List<Car>> GetCarsAllByBrand(); // Markaya göre getir.
-        IDataResult<List<Car>> GetCarsAllDescription(); // Bütün bilgileri getir.
+        IDataResult<List<Car>> GetByCarBrandId(int id); // Marka Id'sine göre getir.
+        IDataResult<List<Car>> GetByCarColorId(int id); //Renk Id'sine göre getir.
+        IDataResult<List<Car>> GetByCarDailyPrice(decimal min, decimal max);
+        IDataResult<List<Car>> GetAllByCarBrand(); // Markaya göre getir.
+        IDataResult<List<Car>> GetAllByCarDescription(); // Bütün bilgileri getir.
         IResult Add(Car car);
         IResult Delete(Car car);
         IResult Update(Car car);
-
-        IDataResult<List<CarDetailDto>> GetCarDetails();
+        IDataResult<List<CarDetailDto>> GetAllCarDetails();
 
 
 

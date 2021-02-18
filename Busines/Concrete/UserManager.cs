@@ -34,9 +34,9 @@ namespace Busines.Concrete
             return new SuccessDataResult<List<User>>(_userDal.GetAll(),Messages.UserListed);
         }
 
-        public IDataResult<User> Get(User user)
+        public IDataResult<User> GetByUser(User user)
         {
-            return new SuccessDataResult<User>(_userDal.Get(u => u.Email == u.Email && u.Password == u.Password));
+            return new SuccessDataResult<User>(_userDal.Get(u => u.UserId == user.UserId));
         }
 
         public IResult Update(User user)
@@ -47,7 +47,7 @@ namespace Busines.Concrete
 
         public IDataResult<User> GetByUserId(int id)
         {
-            return new SuccessDataResult<User>(_userDal.Get(u => u.Id == id));
+            return new SuccessDataResult<User>(_userDal.Get(u => u.UserId == id));
         }
     }
 }

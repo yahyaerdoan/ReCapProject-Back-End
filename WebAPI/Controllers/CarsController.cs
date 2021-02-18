@@ -80,7 +80,7 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
-        [HttpGet("GetCarAllByDescription")]
+        [HttpGet("GetAllByCarDescription")]
         public IActionResult GetAllByCarDescription()
         {
             var result = _carService.GetAllByCarDescription();

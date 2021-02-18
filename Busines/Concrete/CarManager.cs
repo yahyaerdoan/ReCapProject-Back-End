@@ -88,7 +88,7 @@ namespace Busines.Concrete
 
         public IDataResult<List<Car>> GetByCarColorId(int id)
         {
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.ColorId == id));
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.ColorId == id),"Renge göre getirildi");
         }
 
         public IDataResult<List<Car>> GetByCarDailyPrice(decimal min, decimal max)

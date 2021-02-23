@@ -8,5 +8,10 @@ namespace Busines.ValidationRules.FluentValidation
 {
     public class BrandValidator : AbstractValidator<Brand>
     {
+        public BrandValidator()
+        {           
+            RuleFor(b => b.BrandName).NotEmpty();
+            RuleFor(b => b.BrandModel).NotEmpty();          
+        }
     }
 }

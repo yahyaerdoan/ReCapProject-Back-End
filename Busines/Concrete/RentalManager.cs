@@ -8,6 +8,8 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.Text;
+using Core.Aspects.Autofac.Validation;
+using Busines.ValidationRules.FluentValidation;
 
 namespace Busines.Concrete
 {
@@ -18,14 +20,14 @@ namespace Busines.Concrete
         {
             _rentalDal = rentalDal;
         }
-
+        [ValidationAspect(typeof(RentalValidator))]
         public IResult Add(Rental rental)
         {
-            var result = _rentalDal.Get(c=> c.CarId == rental.CarId && 
+            var result = _rentalDal.Get(c => c.CarId == rental.CarId &&
             (c.ReturnDate == null || c.ReturnDate > DateTime.Now));
             if (result!= null)
             {
-                return new ErrorResult(Messages.NotAvailable);
+                return new ErrorResult(Messages.NotYetSuitableforReRental) ;
             }
             else
             {
@@ -47,12 +49,12 @@ namespace Busines.Concrete
 
         public IDataResult<Rental> GetByRentalId(int id)
         {
-            return new SuccessDataResult<Rental>(_rentalDal.Get(r => r.RentalId == id));
+            return new SuccessDataResult<Rental>(_rentalDal.Get(r => r.RentalId == id),Messages.ListedByRentalId);
         }
 
         public IDataResult<List<Rental>> GetByRentalUndelivered()
         {
-            return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll(r => r.ReturnDate == null));
+            return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll(r => r.ReturnDate == null),Messages.ListedByRentalUndelivered);
         }
 
         public IDataResult<List<RentalDetailDto>> GetRentalDetails()

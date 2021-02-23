@@ -1,5 +1,7 @@
 ﻿using Busines.Abstract;
 using Busines.Constants;
+using Busines.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DateAccess.Abstract;
 using Entities.Concrete;
@@ -18,6 +20,7 @@ namespace Busines.Concrete
             _brandDal = brandDal;
         }
 
+        [ValidationAspect(typeof(BrandValidator))]
         public IResult Add(Brand brand)
         {
             _brandDal.Add(brand);
@@ -32,12 +35,12 @@ namespace Busines.Concrete
 
         public IDataResult<List<Brand>> GetAll()
         {
-            return new SuccessDataResult<List<Brand>>(_brandDal.GetAll());
+            return new SuccessDataResult<List<Brand>>(_brandDal.GetAll(),Messages.BrandsListed);
         }
 
         public IDataResult<Brand> GetByCarBrandId(int id)
         {
-            return new SuccessDataResult<Brand>(_brandDal.Get(c => c.BrandId == id));
+            return new SuccessDataResult<Brand>(_brandDal.Get(c => c.BrandId == id),Messages.ListedByBrandId);
         }
 
         public IResult Update(Brand brand)

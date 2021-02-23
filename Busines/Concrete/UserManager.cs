@@ -1,5 +1,7 @@
 ﻿using Busines.Abstract;
 using Busines.Constants;
+using Busines.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DateAccess.Abstract;
 using Entities.Concrete;
@@ -16,7 +18,7 @@ namespace Busines.Concrete
         {
             _userDal = userDal;
         }
-
+        [ValidationAspect(typeof(UserValidator))]
         public IResult Add(User user)
         {
             _userDal.Add(user);
@@ -31,12 +33,12 @@ namespace Busines.Concrete
 
         public IDataResult<List<User>> GetAll()
         {
-            return new SuccessDataResult<List<User>>(_userDal.GetAll(),Messages.UserListed);
+            return new SuccessDataResult<List<User>>(_userDal.GetAll(),Messages.UsersListed);
         }
 
         public IDataResult<User> GetByUser(User user)
         {
-            return new SuccessDataResult<User>(_userDal.Get(u => u.UserId == user.UserId));
+            return new SuccessDataResult<User>(_userDal.Get(u => u.UserId == user.UserId),Messages.UsersListed);
         }
 
         public IResult Update(User user)
@@ -47,7 +49,7 @@ namespace Busines.Concrete
 
         public IDataResult<User> GetByUserId(int id)
         {
-            return new SuccessDataResult<User>(_userDal.Get(u => u.UserId == id));
+            return new SuccessDataResult<User>(_userDal.Get(u => u.UserId == id), Messages.ListedByUserId);
         }
     }
 }

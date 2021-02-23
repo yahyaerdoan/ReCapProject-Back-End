@@ -17,8 +17,8 @@ namespace Busines.ValidationRules.FluentValidation
             RuleFor(c => c.DailyPrice).NotEmpty();
             RuleFor(c => c.DailyPrice).GreaterThan(0);
             RuleFor(c => c.DailyPrice).GreaterThanOrEqualTo(10).When(c => c.DailyPrice == 10); //alakasız oldu ama metodu öğrenmek için yazdım. Category için yazabirim
-            //Özel bir doğrulama yapmak istersen aşağıdaki gibi yapabiliyoruz. GenericMetod ile çözümlüyoruz.
-            RuleFor(c => c.CarName).Must(StartWithCar).WithMessage("İsimler 'Car' eki ile başlamalıdır!");
+                 //Özel bir doğrulama yapmak istersen aşağıdaki gibi yapabiliyoruz. GenericMetod ile çözümlüyoruz.
+            //RuleFor(c => c.CarName).Must(StartWithCar).WithMessage("İsimler 'Car' eki ile başlamalıdır!");
 
         }
 

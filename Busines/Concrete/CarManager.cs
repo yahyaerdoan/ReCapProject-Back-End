@@ -105,7 +105,7 @@ namespace Busines.Concrete
 
         public IDataResult<List<Car>> GetByCarBrandId(int id)
         {
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.BrandId == id));
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.BrandId == id),Messages.ListedByBrandId);
         }
 
         public IDataResult<List<Car>> GetByCarColorId(int id)
@@ -115,7 +115,7 @@ namespace Busines.Concrete
 
         public IDataResult<List<Car>> GetByCarDailyPrice(decimal min, decimal max)
         {
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.DailyPrice >= min && c.DailyPrice <= max));
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.DailyPrice >= min && c.DailyPrice <= max),Messages.PriceRangeListed);
         }
 
         public IResult Update(Car car)

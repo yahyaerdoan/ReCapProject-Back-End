@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Entities.Concrete;
+using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace Busines.Constants
@@ -24,7 +26,7 @@ namespace Busines.Constants
         public static string CustomerUpdated = "Müşteri Güncellendi";
         public static string UserAdded = "Kullanıcı Eklendi";
         public static string UserDeleted = "Kullanıcı Silindi";
-        public static string UserListed = "Kullanıcı Listelendi";      
+        public static string UsersListed = "Kullanıcılar Listelendi";
         public static string RentalAdded = "Kiralama Eklendi";
         public static string UserUpdated = "Kullanıcı Güncellendi";
         public static string RentalAddedError = "Kiralama Ekleme Hatalı";
@@ -38,5 +40,19 @@ namespace Busines.Constants
         public static string ListedByBrand = "Markaya Göre Listelendi";
         public static string CarsDetailListed = "Araç Detayları Listelendi";
         public static string ListedByCarId = "Araç Id'ye Göre Listelendi";
+        public static string PasswordControl = "Oluşturmak İstediğiniz Şifreniz; En Az Bir Rakam, Bir Harf ve 8 Karakterden Oluşmalıdır!";
+        public static string EmailControl = "LÜtfen Geçerli Bir Email Adresi Giriniz!";
+        public static string BrandsListed = "Markalara göre Listelendi";
+        public static string PriceRangeListed = "Günlük Fiyat Aralığına göre Listelendi";
+        public static string ColorListed = "Renge Göre Listelendi";
+        public static string ColorsListed = "Renklere göre Listelendi";
+        public static string ListedByColorId = "Renk Id'ye Göre Listelendi";
+        public static string ListedByBrandId = "Marka Id'ye Göre Listelendi";
+        public static string CustomersListed = "Müşteriler Listelendi";
+        public static string ListedByCustomerId = "Müşteriler Id'ye Göre Listelendi";
+        public static string ListedByRentalId = "Kiralama Id'ye Göre Listelendi";
+        public static string ListedByRentalUndelivered = "Kiralama Teslim Durumuna Göre Listelendi";
+        public static string ListedByUserId = "Kullanıcı Id'ye Göre Listelendi";
+        public static string NotYetSuitableforReRental = "Yeniden Kiralama için Henüz Uygun Değil";
     }
 }

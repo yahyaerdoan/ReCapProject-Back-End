@@ -12,20 +12,21 @@ namespace Core.Aspects.Autofac.Validation
     public class ValidationAspect : MethodInterception
     {
         private Type _validatorType;
-        public ValidationAspect(Type validatorType) //Type ile çalışır
+        public ValidationAspect(Type validatorType) //Type ile çalışır. ValidationAspect : Doğrulama yapısı
         {
+            //defensive codding : Savunma odaklı kodlama: Yanlış tip atılmasın diye diye sınırlama yapılmaktadır. 
             if (!typeof(IValidator).IsAssignableFrom(validatorType))
             {
                 throw new System.Exception("Bu bir doğrulama sınıfı değil");
             }
 
             _validatorType = validatorType;
-        }
+        }                                                         // OnBefore: Metodun Başında çalışır.
         protected override void OnBefore(IInvocation invocation) //İnvocation metod demektir. Argumets parametre demektri.
         {
             var validator = (IValidator)Activator.CreateInstance(_validatorType); // Bu satır reflactiondur.Çalışma anında bir şeyleri yapmak ve çalıştırmaktır. Çalışırken iş yapmaktır.
             var entityType = _validatorType.BaseType.GetGenericArguments()[0]; //CarValidatorun çalışma tipini bul, generic argümanlarından ilkini bul(Cardır)
-            var entities = invocation.Arguments.Where(t => t.GetType() == entityType); //Onunda parametrelerini bul (entityType (Car))
+            var entities = invocation.Arguments.Where(t => t.GetType() == entityType); //Onunda parametrelerini bul (entityType (Car)) eğer ordaki bir tip, benim entityTypema  uyuyorsa onları doğrula
             foreach (var entity in entities)
             {
                 ValidationTool.Validate(validator, entity);

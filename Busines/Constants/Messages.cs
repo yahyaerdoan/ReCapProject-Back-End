@@ -54,5 +54,15 @@ namespace Busines.Constants
         public static string ListedByRentalUndelivered = "Kiralama Teslim Durumuna Göre Listelendi";
         public static string ListedByUserId = "Kullanıcı Id'ye Göre Listelendi";
         public static string NotYetSuitableforReRental = "Yeniden Kiralama için Henüz Uygun Değil";
+        public static string CarCountOfCategoryError = "Bir Kategoriye En Fazla 15 Nesne Eklenebilir!";
+        public static string CarNameAllreadyExists = "Aynı İsimli Araba Eklenemez!";
+        public static string CarNotAdded = "Araç Eklenemedi";
+        public static string CustomerLimitExiceded = "Müşteri Sayısı Aşıldı, Eklenemz!";
+        public static string ImageAdded = "Resim Eklendi";
+        public static string ImageDeleted = "Resim Silindi";
+        public static string ImageUpdated = "Resim Güncellendi";
+        public static string ImageInsertionLimitExceeded = "Resim Ekleme Sınırı Aşıldı";
+        public static string[] ValidImageFileTypes = { ".JPG", ".JPEG", ".PNG", ".TIF", ".TIFF", ".GIF", ".BMP", ".ICO" };
+        public static string InValidImageExtension = "Geçersiz Görüntü Dosya Uzantısı";
     }
 }

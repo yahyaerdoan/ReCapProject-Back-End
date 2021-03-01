@@ -5,6 +5,7 @@ using Busines.Concrete;
 using Castle.DynamicProxy;
 using Core.Utilities.Interceptors;
 using DateAccess.Abstract;
+using DateAccess.Concrete;
 using DateAccess.Concrete.EntityFrameWork;
 using System;
 using System.Collections.Generic;
@@ -37,6 +38,11 @@ namespace Busines.DependencyResolvers.Autofac
 
             builder.RegisterType<RentalManager>().As<IRentalService>().SingleInstance();
             builder.RegisterType<EfRentalDal>().As<IRentalDal>().SingleInstance();
+
+            builder.RegisterType<ImageManager>().As<IImageService>().SingleInstance();
+            builder.RegisterType<EfImageDal>().As<IImageDal>().SingleInstance();
+
+
 
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
 

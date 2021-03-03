@@ -1,4 +1,5 @@
 ﻿using Busines.Constants;
+using Core.Entities.Concrete;
 using Entities.Concrete;
 using FluentValidation;
 using System;
@@ -16,8 +17,8 @@ namespace Busines.ValidationRules.FluentValidation
             RuleFor(u => u.LastName).NotEmpty();
             RuleFor(u => u.Email).NotEmpty();
             RuleFor(u => u.Email).Must(EmailControl).WithMessage(Messages.EmailControl);
-            RuleFor(u => u.Password).NotEmpty();
-            RuleFor(u => u.Password).Must(PasswordControl).WithMessage(Messages.PasswordControl);
+            //RuleFor(u => u.Password).NotEmpty();
+            //RuleFor(u => u.Password).Must(PasswordControl).WithMessage(Messages.PasswordControl);
         }
         private bool EmailControl(string arg)
         {

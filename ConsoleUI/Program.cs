@@ -1,5 +1,6 @@
 ﻿
 using Busines.Concrete;
+using Core.Entities.Concrete;
 using DateAccess.Concrete.EntityFrameWork;
 using DateAccess.Concrete.InMemory;
 using Entities.Concrete;
@@ -16,7 +17,7 @@ namespace ConsoleUI
 
 
             UserManager userManager = new UserManager(new EfUserDal());
-            User user = new User { FirstName = "Namık", LastName = "Yılmaz", Email = "namik@gmail.com", Password = "BbAerty87765" };
+            User user = new User { FirstName = "Namık", LastName = "Yılmaz", Email = "namik@gmail.com" };
             userManager.Add(user);
             var result = userManager.Add(user);
             foreach (var results in result.Message)

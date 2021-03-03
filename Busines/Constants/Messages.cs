@@ -1,4 +1,5 @@
-﻿using Entities.Concrete;
+﻿using Core.Entities.Concrete;
+using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
@@ -64,5 +65,13 @@ namespace Busines.Constants
         public static string ImageInsertionLimitExceeded = "Resim Ekleme Sınırı Aşıldı";
         public static string[] ValidImageFileTypes = { ".JPG", ".JPEG", ".PNG", ".TIF", ".TIFF", ".GIF", ".BMP", ".ICO" };
         public static string InValidImageExtension = "Geçersiz Görüntü Dosya Uzantısı";
+        public static string UserListedByMail = "Kullanıcı Mail'e Göre Listelendi";
+        public static string ClaimsListed = "Kullanıcı Rolleri Listelendi";
+        public static string UserNotFound = "Kullanıcı Bulunamadı";
+        public static string PasswordError = "Şifre Hatası";
+        public static string SuccessfulLogin = "Giriş Başarılı";
+        public static string UserAlreadyExists = "Kullanıcı Mevcut";
+        public static string UserRegistered = "Kullanıcı Kaydedildi";
+        public static string AccessTokenCreated = "Giriş Anahtarı Oluşturuldu.";
     }
 }

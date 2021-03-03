@@ -4,6 +4,7 @@ using Busines.Abstract;
 using Busines.Concrete;
 using Castle.DynamicProxy;
 using Core.Utilities.Interceptors;
+using Core.Utilities.Security.Jwt;
 using DateAccess.Abstract;
 using DateAccess.Concrete;
 using DateAccess.Concrete.EntityFrameWork;
@@ -42,6 +43,8 @@ namespace Busines.DependencyResolvers.Autofac
             builder.RegisterType<ImageManager>().As<IImageService>().SingleInstance();
             builder.RegisterType<EfImageDal>().As<IImageDal>().SingleInstance();
 
+            builder.RegisterType<AuthManager>().As<IAuthService>().SingleInstance();
+            builder.RegisterType<JwtHelper>().As<ITokenHelper>().SingleInstance();
 
 
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();

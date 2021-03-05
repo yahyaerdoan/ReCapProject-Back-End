@@ -7,6 +7,7 @@ namespace Core.Utilities.Security.Jwt
 {
     public interface ITokenHelper
     {
+        //Giriş için bize Anahtar oluşturacak sistem.
         AccessToken CreateToken(User user, List<OperationClaim> operationClaims);
     }
 }

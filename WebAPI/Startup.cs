@@ -18,6 +18,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Core.Utilities.Security.Jwt;
+using Microsoft.AspNetCore.Http;
+using Core.Utilities.IoC;
+using Core.Extensions;
+using Core.DpendencyResolvers;
 
 namespace WebAPI
 {
@@ -32,7 +36,7 @@ namespace WebAPI
 
         // This method gets called by the runtime. Use this method to add services to the container.
 
-      
+
 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -59,18 +63,18 @@ namespace WebAPI
             //services.AddSingleton<IRentalDal, EfRentalDal>();
 
             //services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-
+            //Eðer birisi senden IHttpContextAccessor isterse ona HttpContextAccessor ver.
             services.AddControllers();
-            services.AddCors(options => 
+            services.AddCors(options =>
             {
                 options.AddPolicy("AllowOrigin",
                     builder => builder.WithOrigins("https://localhost:44339"));
             });
-            
-            
+
+
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
 
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme) //using Microsoft.AspNetCore.Authentication.JwtBearer;
                 .AddJwtBearer(options =>
                 {
                     options.TokenValidationParameters = new TokenValidationParameters
@@ -83,8 +87,14 @@ namespace WebAPI
                         ValidateIssuerSigningKey = true,
                         IssuerSigningKey = SecurityKeyHelper.CreateSecurityKey(tokenOptions.SecurityKey)
                     };
-                });
+                }); //Buraya farklý enjectionlarý vitgül ile ekleyebiliriz. Array yerine params veya colecsion da yapýlabilirdi.
+            services.AddDependencyResolvers(new ICoreModule[]
+            {
+                new CoreModule()
+            });
+
             //ServiceTool.Create(services);
+            //ServisTool local olarak baðýmlýlýk çözümledi. Baðýmlýlýk çözümleme iþini core taþýdðýmýz için oradan iþlem yapacaðýz.
 
         }
 
@@ -100,9 +110,9 @@ namespace WebAPI
 
             app.UseRouting();
 
-            app.UseAuthorization(); //Yetk, durumudur.Sýnýrlandýrýlmýþtýr.
+            app.UseAuthentication(); //Giriþ yapmak için anahtar // ÖNCE
 
-            app.UseAuthentication(); //Giriþ yapmak için anahtar
+            app.UseAuthorization(); //Yetk, durumudur.Sýnýrlandýrýlmýþtýr. // SONRA           
 
             app.UseEndpoints(endpoints =>
             {

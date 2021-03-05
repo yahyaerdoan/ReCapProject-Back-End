@@ -2,11 +2,12 @@
 
 namespace Core.Utilities.Security.Jwt
 {
-    public class TokenOptions
+    public class TokenOptions 
+        //HelperClastır. Buradaki değerlerin her biri optiondır. Bu clsass entity değildir.
     {
         public string Audience { get; set; }
         public string Issuer { get; set; }
-        public int AccesTokenExpiration { get; set; }
+        public int AccessTokenExpiration { get; set; }
         public string SecurityKey { get; set; }
     }
 }

@@ -34,7 +34,6 @@ namespace WebAPI.Controllers
             {
                 return Ok(result.Data);
             }
-
             return BadRequest(result.Message);
         }
 
@@ -53,7 +52,6 @@ namespace WebAPI.Controllers
             {
                 return Ok(result.Data);
             }
-
             return BadRequest(result.Message);
         }
     }

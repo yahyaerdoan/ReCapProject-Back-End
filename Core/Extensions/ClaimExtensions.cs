@@ -7,8 +7,10 @@ using System.Text;
 
 namespace Core.Extensions
 {
+    //.Nette var olan bir nesneye yeni metotlar ekleyebiliyoruz. Buna Extensions yani Genişletme diyoruz.
     public static class ClaimExtensions
     {
+        //Bir Extensions metot yazabilmek için classın ve metodun static olması gerekir.
         public static void AddEmail(this ICollection<Claim> claims, string email)
         {
             claims.Add(new Claim(JwtRegisteredClaimNames.Email, email));

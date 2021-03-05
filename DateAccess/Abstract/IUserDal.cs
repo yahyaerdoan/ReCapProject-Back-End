@@ -8,7 +8,7 @@ namespace DateAccess.Abstract
 {
     public interface IUserDal : IEntityRepository<User>
     {
-        //Kullanıcının sahip olduğun rolleri çekmek için metod oluşturduk.
-        List<OperationClaim> GetClaims(User user);
+        //Kullanıcının sahip olduğu rolleri veri tabanından çekmek için metod oluşturduk. //Join atmak için exstra metod yazdık
+        List<OperationClaim> GetClaims(User user); 
     }
 }

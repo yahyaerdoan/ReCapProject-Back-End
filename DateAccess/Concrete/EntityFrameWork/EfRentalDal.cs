@@ -32,15 +32,9 @@ namespace DateAccess.Concrete.EntityFrameWork
                                  LastName = u.LastName,
                                  CompanyName = cstmr.CompanyName,
                                  RentDate = r.RentDate,
-                                 ReturnDate = r.ReturnDate,
-
+                                 ReturnDate = r.ReturnDate                              
                              };
-
-
-
-
-                           return result.ToList();
-
+                return result.ToList();
             }
         }
     }

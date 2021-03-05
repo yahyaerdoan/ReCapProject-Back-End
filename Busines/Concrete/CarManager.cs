@@ -1,4 +1,5 @@
 ﻿using Busines.Abstract;
+using Busines.BusinessAspect.Autofac;
 using Busines.Constants;
 using Busines.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
@@ -31,6 +32,7 @@ namespace Busines.Concrete
         }
         //Business codes
 
+        [SecuredOperation("admin,editor")]
         [ValidationAspect(typeof(CarValidator))] //Buraya doğrulama için instance değil tipi göndermiş oluyoruz. Başka bir nesnenin yazılmaması için.
         public IResult Add(Car car)
         {

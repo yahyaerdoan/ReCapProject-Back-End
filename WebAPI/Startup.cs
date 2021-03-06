@@ -112,7 +112,7 @@ namespace WebAPI
 
             app.UseAuthentication(); //Giriþ yapmak için anahtar // ÖNCE
 
-            app.UseAuthorization(); //Yetk, durumudur.Sýnýrlandýrýlmýþtýr. // SONRA           
+            app.UseAuthorization(); //Yetki durumudur.Sýnýrlandýrýlmýþtýr. // SONRA           
 
             app.UseEndpoints(endpoints =>
             {

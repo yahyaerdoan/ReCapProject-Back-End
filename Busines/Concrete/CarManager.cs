@@ -2,6 +2,9 @@
 using Busines.BusinessAspect.Autofac;
 using Busines.Constants;
 using Busines.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Performance;
+using Core.Aspects.Autofac.Transaction;
 using Core.Aspects.Autofac.Validation;
 using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Business;
@@ -18,7 +21,7 @@ using System.Text;
 namespace Busines.Concrete
 {
     public class CarManager : ICarService
-    {   
+    {
         //Bir Entity Manager kendisi hariç başka bir Dal'ı enjekte edemez.
         //Manager sınıflarına ancak servisleri enjekte edebiliriz.
 
@@ -30,9 +33,11 @@ namespace Busines.Concrete
             _carDal = carDal;
             _customerService = customerService;
         }
-        //Business codes
 
-        [SecuredOperation("admin,editor")]
+        //Business codes
+        [TransactionScopeAspect]
+        [CacheRemoveAspect("ICarService.Get")]
+        [SecuredOperation("car.add,admin")]
         [ValidationAspect(typeof(CarValidator))] //Buraya doğrulama için instance değil tipi göndermiş oluyoruz. Başka bir nesnenin yazılmaması için.
         public IResult Add(Car car)
         {
@@ -41,6 +46,7 @@ namespace Busines.Concrete
             {
                 return result;
             }
+
             _carDal.Add(car);
             return new SuccessResult(Messages.CarAdded);
 
@@ -86,7 +92,7 @@ namespace Busines.Concrete
             _carDal.Delete(car);
             return new SuccessResult(Messages.CarDeleted);
         }
-
+        [CacheAspect]
         public IDataResult<List<Car>> GetAll()
         {
             if (DateTime.Now.Hour == 03)
@@ -95,7 +101,8 @@ namespace Busines.Concrete
             }
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(), Messages.CarsListed);
         }
-
+        [CacheAspect]
+        [PerformanceAspect(3)]
         public IDataResult<Car> GetByCarId(int id)
         {
             return new SuccessDataResult<Car>(_carDal.Get(c => c.CarId == id), Messages.ListedByCarId);
@@ -135,6 +142,7 @@ namespace Busines.Concrete
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.DailyPrice >= min && c.DailyPrice <= max), Messages.PriceRangeListed);
         }
 
+        [CacheRemoveAspect("ICarService.Get")]
         public IResult Update(Car car)
         {
             _carDal.Update(car);
@@ -170,11 +178,31 @@ namespace Busines.Concrete
         private IResult CheckIfCustomerLimitExiceded()
         {
             var result = _customerService.GetAll();
-            if (result.Data.Count>20)
+            if (result.Data.Count > 20)
             {
                 return new ErrorResult(Messages.CustomerLimitExiceded);
             }
             return new SuccessResult();
         }
+
+
+        [TransactionScopeAspect]
+        public IResult AddTransactionalTest(Car car)
+        {
+            Add(car);
+            if (car.DailyPrice < 100)
+            {
+                throw new Exception("Günlük ücret 100 ₺ küçük olmamalıdır!");
+            }
+            Add(car);
+            return null;
+
+
+
+            //_carDal.Update(car);
+            //_carDal.Add(car);
+            //return new SuccessResult(Messages.CarUpdated);
+
+        }
     }
-}
+}   

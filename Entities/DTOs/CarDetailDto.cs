@@ -15,6 +15,8 @@ namespace Entities.DTOs
         public string BrandModel { get; set; }
         public int ColorId { get; set; }
         public string ColorName { get; set; }
+        public int CategoryId { get; set; }
+        public string CategoryName { get; set; }
         public decimal DailyPrice { get; set; }
         public string Description { get; set; }
 

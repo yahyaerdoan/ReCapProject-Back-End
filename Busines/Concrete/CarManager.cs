@@ -35,7 +35,7 @@ namespace Busines.Concrete
         }
 
         //Business codes
-        [TransactionScopeAspect]
+        
         [CacheRemoveAspect("ICarService.Get")]
         [SecuredOperation("car.add,admin")]
         [ValidationAspect(typeof(CarValidator))] //Buraya doğrulama için instance değil tipi göndermiş oluyoruz. Başka bir nesnenin yazılmaması için.
@@ -187,22 +187,22 @@ namespace Busines.Concrete
 
 
         [TransactionScopeAspect]
-        public IResult AddTransactionalTest(Car car)
+        public IResult TransactionalOperation(Car car)
         {
-            Add(car);
-            if (car.DailyPrice < 100)
-            {
-                throw new Exception("Günlük ücret 100 ₺ küçük olmamalıdır!");
-            }
-            Add(car);
-            return null;
+            _carDal.Update(car);
+            _carDal.Add(car);
+            return new SuccessResult(Messages.CarUpdated);
 
 
 
-            //_carDal.Update(car);
-            //_carDal.Add(car);
-            //return new SuccessResult(Messages.CarUpdated);
 
+            //Add(car);
+            //if (car.DailyPrice < 100)
+            //{
+            //    throw new Exception("Günlük ücret 100 ₺ küçük olmamalıdır!");
+            //}
+            //Add(car);
+            //return null;
         }
     }
 }   

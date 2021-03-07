@@ -75,5 +75,10 @@ namespace Busines.Constants
         public static string UserRegistered = "Kullanıcı Kaydedildi";
         public static string AccessTokenCreated = "Giriş Anahtarı Oluşturuldu.";
         public static string AuthorizationDenied = "Yetkilendirme Reddedildi";
+        public static string CategoryAdded = "Kategori Eklendi";
+        public static string CategoryDeleted = "Kategori Silindi";
+        public static string CategoriesListed = "Kategoriler Listelendi";
+        public static string CategoryUpdated = "Kategori Güncellendi";
+        public static string ListedByCategorydId = "Kategori Id'ye Göre Listelendi";
     }
 }

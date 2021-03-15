@@ -23,7 +23,8 @@ namespace DateAccess.Concrete.EntityFrameWork
                                  CustomerId = c.CustomerId,
                                  FirstName = u.FirstName,
                                  LastName = u.LastName,
-                                 CompanyName = c.CompanyName
+                                 CompanyName = c.CompanyName,
+                                 Email = u.Email
                              };
                 return result.ToList();
 

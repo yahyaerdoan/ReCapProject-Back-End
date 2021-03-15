@@ -64,6 +64,7 @@ namespace WebAPI
 
             //services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             //Eðer birisi senden IHttpContextAccessor isterse ona HttpContextAccessor ver.
+
             services.AddControllers();
             services.AddCors(options =>
             {
@@ -71,6 +72,7 @@ namespace WebAPI
                     builder => builder.WithOrigins("https://localhost:44339"));
             });
 
+            services.AddCors();
 
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>();
 
@@ -105,6 +107,7 @@ namespace WebAPI
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseCors(builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader()); //AllowAnyHeader : solumdaki adreslerden ne gelirse gelsin güveniyorum. Onlara açýðým diyor.
 
             app.UseHttpsRedirection();
 

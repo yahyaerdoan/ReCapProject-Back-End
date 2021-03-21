@@ -33,9 +33,9 @@ namespace Busines.Concrete
             return new SuccessDataResult<List<Category>>(_categoryDal.GetAll(), Messages.CategoriesListed);
         }
 
-        public IDataResult<Category> GetByCarCategoryId(int id)
+        public IDataResult<Category> GetCarsByCategoryId(int categoryId)
         {
-            return new SuccessDataResult<Category>(_categoryDal.Get(c => c.CategoryId == id), Messages.ListedByCategorydId);
+            return new SuccessDataResult<Category>(_categoryDal.Get(c => c.CategoryId == categoryId), Messages.ListedByCategorydId);
         }
 
         public IResult Update(Category category)

@@ -8,7 +8,7 @@ namespace Busines.Abstract
 {
     public interface ICategoryService
     {
-        IDataResult<Category> GetByCarCategoryId(int id); // Marka Id'sine göre getir.
+        IDataResult<Category> GetCarsByCategoryId(int categoryId); // Marka Id'sine göre getir.
         IDataResult<List<Category>> GetAll(); //Her bilgiyi getir.
         IResult Add(Category category);
         IResult Delete(Category category);

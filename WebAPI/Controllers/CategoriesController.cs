@@ -19,9 +19,9 @@ namespace WebAPI.Controllers
             _categoryService = categoryService;
         }
         [HttpGet("GetCarsByCategoryId")]
-        public IActionResult GetCarsByCategoryId(int id)
+        public IActionResult GetCarsByCategoryId(int categoryId)
         {
-            var result = _categoryService.GetByCarCategoryId(id);
+            var result = _categoryService.GetCarsByCategoryId(categoryId);
             if (result.Success)
             {
                 return Ok(result);

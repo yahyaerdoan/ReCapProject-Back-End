@@ -26,7 +26,7 @@ namespace Core.Utilities.Helpers
                 fileStream.Flush();
                 imagePath = directory + path + newGUID;
             }
-            return imagePath.Replace("\\", "/");
+            return newGUID;
         }
 
         public static string Update(IFormFile file, string OldImagePath)

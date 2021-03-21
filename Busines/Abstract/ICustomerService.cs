@@ -1,5 +1,6 @@
 ﻿using Core.Utilities.Results;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,5 +14,6 @@ namespace Busines.Abstract
         IResult Add(Customer user);
         IResult Update(Customer user);
         IResult Delete(Customer user);
+        IDataResult<List<CustomerDetailDto>> GetCustomerDetails();
     }
 }

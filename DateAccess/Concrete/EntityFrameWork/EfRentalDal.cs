@@ -23,16 +23,20 @@ namespace DateAccess.Concrete.EntityFrameWork
                              join cstmr in context.Customers
                              on r.CustomerId equals cstmr.CustomerId
                              join u in context.Users
-                             on cstmr.CustomerId equals u.UserId
+                             on cstmr.UserId equals u.UserId
                              select new RentalDetailDto
                              {
                                  CarId = r.RentalId,
-                                 CarName = b.BrandName,
+                                 CarName = c.CarName,
                                  FirstName = u.FirstName,
                                  LastName = u.LastName,
                                  CompanyName = cstmr.CompanyName,
                                  RentDate = r.RentDate,
-                                 ReturnDate = r.ReturnDate                              
+                                 ReturnDate = r.ReturnDate,
+                                 BrandModel = b.BrandModel,
+                                 BrandName = b.BrandName,
+                               
+                                 
                              };
                 return result.ToList();
             }

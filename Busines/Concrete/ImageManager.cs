@@ -92,7 +92,7 @@ namespace Busines.Concrete
         //Eğer bir arabaya ait resim yoksa, default bir resim gösteriniz. Tek elemanlı liste. 
         private List<Image> CheckIfThereIsAImage(int carId)
         {
-            string path = @"\wwwroot\Images\logo.png";
+            string path = "logo.png";
             var result = _imageDal.GetAll(c => c.CarId == carId).Any();
             if (!result)
             {

@@ -20,7 +20,7 @@ namespace Busines.Concrete
         {
             _rentalDal = rentalDal;
         }
-        [ValidationAspect(typeof(RentalValidator))]
+        //[ValidationAspect(typeof(RentalValidator))]
         public IResult Add(Rental rental)
         {
             var result = _rentalDal.Get(c => c.CarId == rental.CarId &&

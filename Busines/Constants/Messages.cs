@@ -80,5 +80,6 @@ namespace Busines.Constants
         public static string CategoriesListed = "Kategoriler Listelendi";
         public static string CategoryUpdated = "Kategori Güncellendi";
         public static string ListedByCategorydId = "Kategori Id'ye Göre Listelendi";
+        
     }
 }

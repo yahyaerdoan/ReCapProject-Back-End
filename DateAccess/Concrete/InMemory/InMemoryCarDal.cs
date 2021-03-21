@@ -9,7 +9,7 @@ using System.Text;
 
 namespace DateAccess.Concrete.InMemory
 {
-    public class InMemoryCarDal : ICarDal
+    public class InMemoryCarDal //: ICarDal
     {
         List<Car> _cars;
         public InMemoryCarDal()
@@ -67,7 +67,7 @@ namespace DateAccess.Concrete.InMemory
             return _cars;
         }
 
-        public List<CarDetailDto> GetAllCarDetails()
+        public List<CarDetailDto> GetCarDetails()
         {
             throw new NotImplementedException();
         }

@@ -35,7 +35,7 @@ namespace Busines.Concrete
         }
 
         //Business codes
-        
+
         [CacheRemoveAspect("ICarService.Get")]
         [SecuredOperation("car.add,admin")]
         [ValidationAspect(typeof(CarValidator))] //Buraya doğrulama için instance değil tipi göndermiş oluyoruz. Başka bir nesnenin yazılmaması için.
@@ -102,19 +102,20 @@ namespace Busines.Concrete
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(), Messages.CarsListed);
         }
         [CacheAspect]
-        [PerformanceAspect(3)]
-        public IDataResult<Car> GetByCarId(int id)
+        //[PerformanceAspect(3)]
+        public IDataResult<Car> GetByCarId(int categoryId)
         {
-            return new SuccessDataResult<Car>(_carDal.Get(c => c.CarId == id), Messages.ListedByCarId);
+            return new SuccessDataResult<Car>(_carDal.Get(c => c.CarId == categoryId), Messages.ListedByCarId);
         }
 
-        public IDataResult<List<CarDetailDto>> GetAllCarDetails()
+        public IDataResult<List<CarDetailDto>> GetCarsDetails()
         {
             if (DateTime.Now.Hour == 03)
             {
-                return new ErrorDataResult<List<CarDetailDto>>(_carDal.GetAllCarDetails(), Messages.MaintenanceTime);
+
+                return new ErrorDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(), Messages.MaintenanceTime);
             }
-            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetAllCarDetails(), Messages.CarsDetailListed);
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(), Messages.CarsDetailListed);
         }
 
         public IDataResult<List<Car>> GetAllByCarBrand()
@@ -127,14 +128,14 @@ namespace Busines.Concrete
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(), Messages.CarsDescriptionListed);
         }
 
-        public IDataResult<List<Car>> GetByCarBrandId(int id)
+        public IDataResult<List<Car>> GetCarsByBrandId(int brandId)
         {
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.BrandId == id), Messages.ListedByBrandId);
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.BrandId == brandId), Messages.ListedByBrandId);
         }
 
-        public IDataResult<List<Car>> GetByCarColorId(int id)
+        public IDataResult<List<Car>> GetCarsByColorId(int colorId)
         {
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.ColorId == id), Messages.ListedByColor);
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.ColorId == colorId), Messages.ListedByColor);
         }
 
         public IDataResult<List<Car>> GetByCarDailyPrice(decimal min, decimal max)
@@ -204,5 +205,32 @@ namespace Busines.Concrete
             //Add(car);
             //return null;
         }
+
+        public IDataResult<List<Car>> GetCarsByCategoryId(int categoryId)
+        {
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.CategoryId == categoryId), Messages.ListedByCategorydId);
+        }
+
+        public IDataResult<List<CarDetailDto>> GetCarsDetailsByBrandId(int brandId)
+        {
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(c => c.BrandId == brandId), Messages.ListedByBrandId);
+        }
+
+        public IDataResult<List<CarDetailDto>> GetCarsDetailsByCategoryId(int categoryId)
+        {
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(c => c.CategoryId == categoryId), Messages.ListedByCategorydId);
+        }
+
+        public IDataResult<List<CarDetailDto>> GetCarsDetailsByColorId(int colorId)
+        {
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(c => c.ColorId == colorId), Messages.ListedByColorId);
+
+        }
+
+        public IDataResult<List<CarDetailDto>> GetCarsDetailsByCarId(int carId)
+        {
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(c => c.CarId == carId), Messages.ListedByCarId);
+
+        }
     }
-}   
+}

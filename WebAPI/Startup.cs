@@ -113,6 +113,8 @@ namespace WebAPI
 
             app.UseRouting();
 
+            app.UseStaticFiles();
+
             app.UseAuthentication(); //Giriþ yapmak için anahtar // ÖNCE
 
             app.UseAuthorization(); //Yetki durumudur.Sýnýrlandýrýlmýþtýr. // SONRA           

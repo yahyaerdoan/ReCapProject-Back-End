@@ -8,7 +8,7 @@ namespace Busines.Abstract
 {
     public interface IBrandService
     {
-        IDataResult<Brand> GetByCarBrandId(int id); // Marka Id'sine göre getir.
+        IDataResult<Brand> GetCarsByBrandId(int brandId); // Marka Id'sine göre getir.
         IDataResult<List<Brand>> GetAll(); //Her bilgiyi getir.
         IResult Add(Brand brand);
         IResult Delete(Brand brand);

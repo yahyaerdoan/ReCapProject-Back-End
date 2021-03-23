@@ -18,10 +18,10 @@ namespace WebAPI.Controllers
         {
             _colorService = colorService;
         }
-        [HttpGet("GetByCarColorId")]
-        public IActionResult GetByCarColorId(int id) 
+        [HttpGet("GetCarsByColorId")]
+        public IActionResult GetCarsByColorId(int colorId) 
         {
-            var result = _colorService.GetByCarColorId(id);
+            var result = _colorService.GetCarsByColorId(colorId);
             if (result.Success)
             {
                 return Ok(result);

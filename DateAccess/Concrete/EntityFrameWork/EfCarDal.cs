@@ -23,8 +23,8 @@ namespace DateAccess.Concrete.EntityFrameWork
                              on ca.ColorId equals co.ColorId
                              join cgt in context.Categories
                              on ca.CategoryId equals cgt.CategoryId
-                             join i in context.Images
-                             on ca.CarId equals i.CarId
+                             //join i in context.Images
+                             //on ca.CarId equals i.CarId
                              select new CarDetailDto
                              {
                                  CarId = ca.CarId,
@@ -38,7 +38,8 @@ namespace DateAccess.Concrete.EntityFrameWork
                                  Description = ca.Description,
                                  CategoryId = cgt.CategoryId,
                                  CategoryName = cgt.CategoryName, 
-                                 ImagePath = i.ImagePath
+                                 ImagePath = (from i in context.Images where i.CarId == ca.CarId select i.ImagePath).ToList(),
+                                 ModelYear = ca.ModelYear
                              };
 
                 return filter == null ? result.ToList() : result.Where(filter).ToList();

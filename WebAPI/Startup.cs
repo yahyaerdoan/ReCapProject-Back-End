@@ -109,8 +109,8 @@ namespace WebAPI
             }
             app.ConfigureCustomExceptionMiddleware();
 
-            app.UseCors(builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader()); //AllowAnyHeader : solumdaki adreslerden ne gelirse gelsin güveniyorum. Onlara açýðým diyor.
-
+            app.UseCors(builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod()); //AllowAnyHeader : solumdaki adreslerden ne gelirse gelsin güveniyorum. Onlara açýðým diyor.
+                                                                                                                    //AllowAnyMethod : Hangi istek geliþrse kabul et izni veriyor.
             app.UseHttpsRedirection();
 
             app.UseRouting();

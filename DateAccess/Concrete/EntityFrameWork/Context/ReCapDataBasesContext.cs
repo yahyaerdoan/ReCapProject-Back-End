@@ -23,5 +23,6 @@ namespace DateAccess.Concrete.EntityFrameWork
         public DbSet<Image> Images { get; set; }
         public DbSet<OperationClaim> OperationClaims { get; set; }
         public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
+        public DbSet<CardPayment> CardPayments { get; set; }
     }
 }

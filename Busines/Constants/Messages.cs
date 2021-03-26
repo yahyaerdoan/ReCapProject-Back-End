@@ -81,10 +81,10 @@ namespace Busines.Constants
         public static string CategoryUpdated = "Kategori Güncellendi";
         public static string ListedByCategorydId = "Kategori Id'ye Göre Listelendi";
         public static string CreditCardNumberAllreadyExists = "Kredi Kartı Numarası Mevcut";
-        public static string CardPaymentsUpdated = "Kredi Kartı Numarası ile Ödeme işlemi Eklendi";
+        public static string CardPaymentsUpdated = "Kredi Kartı Numarası ile Ödeme işlemi Güncellendi";
         public static string CardPaymentsDeleted = "Kredi Kartı Numarası ile Ödeme işlemi Silindi";
-        public static string CardPaymentsAdded = "Kredi Kartı Numarası ile Ödeme işlemi Güncellendi";
-        public static string GetCardPaymetsByCustomerId = "Kredi Kartı Numarası ile Ödeme işlemi Müşteri Numarasına Göre Listelendi";
+        public static string CardPaymentsAdded = "Kredi Kartı Numarası ile Ödeme işlemi Eklendi";
+        public static string GetCardPaymetsByCustomerIdListed = "Kredi Kartı Numarası ile Ödeme işlemi Müşteri Numarasına Göre Listelendi";
         public static string CardPaymentsListed = "Kredi Kartı Numarası ile Ödeme işlemleri Listelendi";
     }
 }

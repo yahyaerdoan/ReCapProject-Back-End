@@ -37,7 +37,7 @@ namespace Busines.Concrete
         //Business codes
 
         [CacheRemoveAspect("ICarService.Get")]
-        //[SecuredOperation("car.add,admin")]
+        [SecuredOperation("car.add,admin")]
         [ValidationAspect(typeof(CarValidator))] //Buraya doğrulama için instance değil tipi göndermiş oluyoruz. Başka bir nesnenin yazılmaması için.
         public IResult Add(Car car)
         {

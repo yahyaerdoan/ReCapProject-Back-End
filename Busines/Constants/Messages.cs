@@ -69,11 +69,11 @@ namespace Busines.Constants
         public static string UserListedByMail = "Kullanıcı Mail'e Göre Listelendi";
         public static string ClaimsListed = "Kullanıcı Rolleri Listelendi";
         public static string UserNotFound = "Kullanıcı Bulunamadı";
-        public static string PasswordError = "Şifre Hatası";
+        public static string PasswordError = "E-Mail adresiniz veya Şifreniz hatalı!";
         public static string SuccessfulLogin = "Giriş Başarılı";
         public static string UserAlreadyExists = "Kullanıcı Mevcut";
         public static string UserRegistered = "Kullanıcı Kaydedildi";
-        public static string AccessTokenCreated = "Giriş Anahtarı Oluşturuldu.";
+        public static string AccessTokenCreated = "Erişim Anahtarı Oluşturuldu";
         public static string AuthorizationDenied = "Yetkilendirme Reddedildi";
         public static string CategoryAdded = "Kategori Eklendi";
         public static string CategoryDeleted = "Kategori Silindi";

@@ -232,5 +232,11 @@ namespace Busines.Concrete
             return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(c => c.CarId == carId), Messages.ListedByCarId);
 
         }
+
+        public IDataResult<List<CarDetailDto>> GetAllCarsDetailsByFilter(int categoryId, int carId, int brandId, int colorId)
+        {
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails()
+                .Where(x => x.CategoryId == categoryId && x.CarId == carId && x.BrandId == brandId && x.ColorId == colorId).ToList());
+        }
     }
 }

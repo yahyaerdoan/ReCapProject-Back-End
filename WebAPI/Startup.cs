@@ -40,7 +40,8 @@ namespace WebAPI
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(); // Front End'den gelen yazý tipini json formata çevirip ekliyecek pakaet indirdik.
+
             //Burdadaki operasyonlarý AOP yapabilmek için AutofacBusiness Modüle taþýdýk.
             //Artýk burayý kullanmýyor olacaðýz.
 
@@ -65,7 +66,7 @@ namespace WebAPI
             //services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             //Eðer birisi senden IHttpContextAccessor isterse ona HttpContextAccessor ver.
 
-            services.AddControllers();
+            
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowOrigin",

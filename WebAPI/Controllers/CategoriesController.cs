@@ -58,7 +58,7 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
-        [HttpDelete("Delete")]
+        [HttpPut("Delete")]
         public IActionResult Delete(Category category)
         {
             var result = _categoryService.Delete(category);

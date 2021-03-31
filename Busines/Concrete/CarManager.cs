@@ -34,14 +34,14 @@ namespace Busines.Concrete
             _customerService = customerService;
         }
 
-        //Business codes
+        //Business codes CheckIfCarNameExists(car.CarName),
 
         [CacheRemoveAspect("ICarService.Get")]
         [SecuredOperation("car.add,admin")]
-        [ValidationAspect(typeof(CarValidator))] //Buraya doğrulama için instance değil tipi göndermiş oluyoruz. Başka bir nesnenin yazılmaması için.
+        //[ValidationAspect(typeof(CarValidator))] //Buraya doğrulama için instance değil tipi göndermiş oluyoruz. Başka bir nesnenin yazılmaması için.
         public IResult Add(Car car)
         {
-            IResult result = BusinessRules.Run(CheckIfCarCountOfCategoryCorrect(car.CarId), CheckIfCarNameExists(car.CarName), CheckIfCustomerLimitExiceded());
+            IResult result = BusinessRules.Run(CheckIfCarCountOfCategoryCorrect(car.CarId),  CheckIfCustomerLimitExiceded());
             if (result != null)
             {
                 return result;
@@ -54,15 +54,15 @@ namespace Busines.Concrete
             //çirkin kod görünümü ve yönetimi zor ve kötü olacağı için kuralları BusinessRules iş motoruna gönderdik.
             // Hemen üstteki yeni metodla kodlarımızı daha da güzelleştirdik.
 
-            if (CheckIfCarCountOfCategoryCorrect(car.CarId).Success)
-            {
-                if (CheckIfCarNameExists(car.CarName).Success)
-                {
-                    _carDal.Add(car);
-                    return new SuccessResult(Messages.CarAdded);
-                }
-            }
-            return new ErrorResult(Messages.CarNotAdded);
+            //if (CheckIfCarCountOfCategoryCorrect(car.CarId).Success)
+            //{
+            //    if (CheckIfCarNameExists(car.CarName).Success)
+            //    {
+            //        _carDal.Add(car);
+            //        return new SuccessResult(Messages.CarAdded);
+            //    }
+            //}
+            //return new ErrorResult(Messages.CarNotAdded);
         }
 
         //return FluentValidationYaptığımıziçinAşağıdakiMetodaİhtiyacımızKalmadı(car);
@@ -162,15 +162,15 @@ namespace Busines.Concrete
         }
 
         //Ayni Isimli Araba Eklenemez
-        private IResult CheckIfCarNameExists(string carName)
-        {
-            var result = _carDal.GetAll(c => c.CarName == carName).Any();
-            if (result)
-            {
-                return new ErrorResult(Messages.CarNameAllreadyExists);
-            }
-            return new SuccessResult();
-        }
+        //private IResult CheckIfCarNameExists(string carName)
+        //{
+        //    var result = _carDal.GetAll(c => c.CarName == carName).Any();
+        //    if (result)
+        //    {
+        //        return new ErrorResult(Messages.CarNameAllreadyExists);
+        //    }
+        //    return new SuccessResult();
+        //}
 
         //Eğer mevcut kategori sayısı 15'i geçtiryse sisteme yeni ürün eklenemz.
         //Buradaki kural tek başına customer ile alakalı kural değil eğer öyle olsaydı kendi manegarine yazardık.
@@ -236,7 +236,8 @@ namespace Busines.Concrete
         public IDataResult<List<CarDetailDto>> GetAllCarsDetailsByFilter(int categoryId, int carId, int brandId, int colorId)
         {
             return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails()
-                .Where(x => x.CategoryId == categoryId && x.CarId == carId && x.BrandId == brandId && x.ColorId == colorId).ToList());
+                .Where(x => x.CategoryId == categoryId && x.CarId == carId && x.BrandId == brandId && x.ColorId == colorId).ToList()
+                , Messages.ListedByFilter);
         }
     }
 }

@@ -6,12 +6,13 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace DateAccess.Concrete.EntityFrameWork
 {
     public class EfCustomerDal : EfEntityRepositoryBase<Customer, ReCapDataBasesContext>, ICustomerDal
     {
-        public List<CustomerDetailDto> GetCustomerDetails()
+        public List<CustomerDetailDto> GetCustomerDetails(Expression<Func<CustomerDetailDto, bool>> filter = null)
         {
             using (ReCapDataBasesContext context = new ReCapDataBasesContext())
             {
@@ -24,11 +25,13 @@ namespace DateAccess.Concrete.EntityFrameWork
                                  FirstName = u.FirstName,
                                  LastName = u.LastName,
                                  CompanyName = c.CompanyName,
-                                 Email = u.Email
+                                 Email = u.Email,
+                                 FindexPoint = (int)c.FindexPoint
                              };
-                return result.ToList();
+                return filter == null ? result.ToList() : result.Where(filter).ToList();
 
             }
         }
+
     }
 }

@@ -42,6 +42,11 @@ namespace Busines.Concrete
             return new SuccessDataResult<Customer>(_customerDal.Get(c => c.CustomerId == id),Messages.ListedByCustomerId);
         }
 
+        public IDataResult<List<CustomerDetailDto>> GetCustomersByEmail(string email)
+        {
+            return new SuccessDataResult<List<CustomerDetailDto>>(_customerDal.GetCustomerDetails(u => u.Email == email));
+        }
+
         public IDataResult<List<CustomerDetailDto>> GetCustomerDetails()
         {
             return new SuccessDataResult<List<CustomerDetailDto>>(_customerDal.GetCustomerDetails());

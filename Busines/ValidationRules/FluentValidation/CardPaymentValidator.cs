@@ -11,7 +11,7 @@ namespace Busines.ValidationRules.FluentValidation
         public CardPaymentValidator()
         {
 
-            RuleFor(c => c.CustomerId).NotEmpty();
+            //RuleFor(c => c.CustomerId).NotEmpty();
             RuleFor(c => c.CreditCardNumber).NotEmpty();
             RuleFor(c => c.CreditCardNumber).Length(16);
             RuleFor(c => c.CardholderFirstNameLastName).NotEmpty();

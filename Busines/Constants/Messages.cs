@@ -86,6 +86,8 @@ namespace Busines.Constants
         public static string CardPaymentsAdded = "Kredi Kartı Numarası ile Ödeme işlemi Eklendi";
         public static string GetCardPaymetsByCustomerIdListed = "Kredi Kartı Numarası ile Ödeme işlemi Müşteri Numarasına Göre Listelendi";
         public static string CardPaymentsListed = "Kredi Kartı Numarası ile Ödeme işlemleri Listelendi";
-        internal static string ListedByFilter = "Araçlar Filitreye Göre Listelendi";
+        public static string ListedByFilter = "Araçlar Filitreye Göre Listelendi";
+        public static string RentalInValid ;
+        public static string CarIsRentable ="Kiralanabilir";
     }
 }

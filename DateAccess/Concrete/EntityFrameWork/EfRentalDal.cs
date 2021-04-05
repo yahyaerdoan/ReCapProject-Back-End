@@ -35,6 +35,7 @@ namespace DateAccess.Concrete.EntityFrameWork
                                  ReturnDate = r.ReturnDate,
                                  BrandModel = b.BrandModel,
                                  BrandName = b.BrandName,
+                                 DailyPrice = r.DailyPrice           
                                
                                  
                              };

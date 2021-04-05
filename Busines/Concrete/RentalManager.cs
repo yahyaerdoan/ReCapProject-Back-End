@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Text;
 using Core.Aspects.Autofac.Validation;
 using Busines.ValidationRules.FluentValidation;
+using DateAccess.Concrete.EntityFrameWork;
 
 namespace Busines.Concrete
 {
@@ -62,10 +63,22 @@ namespace Busines.Concrete
             return new SuccessDataResult<List<RentalDetailDto>>(_rentalDal.GetRentalDetails(), Messages.RentalListed);
         }
 
+        public IResult IsRentable(Rental rental)
+        {
+
+            var result = _rentalDal.GetAll();
+            if (result.Where(r => r.CarId == rental.CarId
+                    && r.ReturnDate >= rental.RentDate
+                    && r.RentDate <= rental.ReturnDate).Any())
+                return new ErrorResult(Messages.RentalInValid);
+            return new SuccessResult(Messages.CarIsRentable);
+
+        }
+
         public IResult Update(Rental rental)
         {
             _rentalDal.Update(rental);
             return new SuccessResult(Messages.RentalUpdated);
         }
-    }
+    }    
 }

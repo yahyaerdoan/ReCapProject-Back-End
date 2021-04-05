@@ -32,7 +32,7 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("GetByCustomerId")]
+        [HttpGet("GetCardPaymetsByCustomerId")]
         public IActionResult GetCardPaymetsByCustomerId(int customerId)
         {
             var result = _cardPaymentService.GetCardPaymetsByCustomerId(customerId);

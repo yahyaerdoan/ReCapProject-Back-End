@@ -90,6 +90,7 @@ namespace Busines.Constants
         public static string RentalInValid ="Kiralama için uygun değil" ;
         public static string CarIsRentable ="Kiralanabilir";
         public static string CustomerFindexPointIsZero = "Findex Puanınız Bulunamadı!";
-        public static string CustomerScoreIsInsufficient = "Findex Puanınız yetersiz!";
+        public static string CustomerScoreIsInsufficient = "Findex Puanınız Yetersiz!";
+        internal static string PaymentSuccessful = "Ödeme işlemi Başarılı";
     }
 }

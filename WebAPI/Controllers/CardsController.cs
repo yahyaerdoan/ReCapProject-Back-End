@@ -79,5 +79,15 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);  
         }
+        [HttpPost("SaveCard")]
+        public IActionResult SaveCard(Card card)
+        {
+            var result = _CardService.Add(card);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
     }
 }

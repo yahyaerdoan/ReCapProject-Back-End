@@ -46,9 +46,9 @@ namespace Busines.Concrete
             return new SuccessDataResult<List<Card>>(_CarddDal.GetAll(),Messages.CardsListed);
         }
 
-        public IDataResult<Card> GetCardsByCustomerId(int customerId)
+        public IDataResult<List<Card>> GetCardsByCustomerId(int customerId)
         {
-            return new SuccessDataResult<Card>(_CarddDal.Get(c => c.CustomerId == customerId),Messages.GetCardPaymetsByCustomerIdListed);
+            return new SuccessDataResult<List<Card>>(_CarddDal.GetAll(c => c.CustomerId == customerId),Messages.GetCardPaymetsByCustomerIdListed);
         }
 
         public IResult Update(Card Card)

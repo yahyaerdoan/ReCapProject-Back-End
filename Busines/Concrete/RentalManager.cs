@@ -31,7 +31,8 @@ namespace Busines.Concrete
         public IResult Add(Rental rental)
         {
             var result = BusinessRules.Run(CarRentedCheck(rental),
-                FindeksScoreCheck(rental.CustomerId, rental.CarId));
+                FindeksScoreCheck(rental.CustomerId, rental.CarId), 
+                UpdateCustomerFindexPoint(rental.CustomerId, rental.CarId));
 
             if (result != null)
                 return result;
@@ -109,6 +110,16 @@ namespace Busines.Concrete
             if (rentalledCars)
                 return new ErrorResult(Messages.NotYetSuitableforReRental);
 
+            return new SuccessResult();
+        }
+        private IResult UpdateCustomerFindexPoint(int customerId, int carId)
+        {
+            var customer = _customerService.GetByCustomerId(customerId).Data;
+            var car = _carService.GetByCarId(carId).Data;
+
+            customer.FindexPoint = (car.FindexPoint / 2) + customer.FindexPoint;
+
+            _customerService.Update(customer);
             return new SuccessResult();
         }
     }

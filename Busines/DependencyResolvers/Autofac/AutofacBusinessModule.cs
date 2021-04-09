@@ -53,6 +53,10 @@ namespace Busines.DependencyResolvers.Autofac
             builder.RegisterType<CardManager>().As<ICardService>().SingleInstance();
             builder.RegisterType<EfCardDal>().As<ICardDal>().SingleInstance();
 
+            builder.RegisterType<PaymentManager>().As<IPaymentService>().SingleInstance();
+            builder.RegisterType<EfPaymentDal>().As<IPaymentDal>().SingleInstance();
+
+
 
             //builder.RegisterType<HttpContextAccessor>().As<IHttpContextAccessor>();
 

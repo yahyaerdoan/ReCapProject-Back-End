@@ -9,7 +9,7 @@ namespace Busines.Abstract
     public interface ICardService
     {
         IDataResult<List<Card>> GetAll();
-        IDataResult<Card> GetCardsByCustomerId(int customerId);
+        IDataResult<List<Card>> GetCardsByCustomerId(int customerId);
         IResult Add(Card Card);
         IResult Update(Card Card);
         IResult Delete(Card Card);

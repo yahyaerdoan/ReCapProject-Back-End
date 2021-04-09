@@ -11,30 +11,33 @@ using System.Text;
 using Core.Aspects.Autofac.Validation;
 using Busines.ValidationRules.FluentValidation;
 using DateAccess.Concrete.EntityFrameWork;
+using Core.Utilities.Business;
 
 namespace Busines.Concrete
 {
     public class RentalManager : IRentalService
     {
         IRentalDal _rentalDal;
-        public RentalManager(IRentalDal rentalDal)
+        ICarService _carService;
+        ICustomerService _customerService;
+
+        public RentalManager(IRentalDal rentalDal, ICarService carService, ICustomerService customerService)
         {
             _rentalDal = rentalDal;
+            _carService = carService;
+            _customerService = customerService;
         }
         //[ValidationAspect(typeof(RentalValidator))]
         public IResult Add(Rental rental)
         {
-            var result = _rentalDal.Get(c => c.CarId == rental.CarId &&
-            (c.ReturnDate == null || c.ReturnDate > DateTime.Now));
-            if (result!= null)
-            {
-                return new ErrorResult(Messages.NotYetSuitableforReRental) ;
-            }
-            else
-            {
-                _rentalDal.Add(rental);
-                return new SuccessResult(Messages.RentalAdded);
-            }
+            var result = BusinessRules.Run(CarRentedCheck(rental),
+                FindeksScoreCheck(rental.CustomerId, rental.CarId));
+
+            if (result != null)
+                return result;
+
+            _rentalDal.Add(rental);
+            return new SuccessResult(Messages.RentalAdded);
         }
 
         public IResult Delete(Rental rental)
@@ -50,12 +53,12 @@ namespace Busines.Concrete
 
         public IDataResult<Rental> GetByRentalId(int id)
         {
-            return new SuccessDataResult<Rental>(_rentalDal.Get(r => r.RentalId == id),Messages.ListedByRentalId);
+            return new SuccessDataResult<Rental>(_rentalDal.Get(r => r.RentalId == id), Messages.ListedByRentalId);
         }
 
         public IDataResult<List<Rental>> GetByRentalUndelivered()
         {
-            return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll(r => r.ReturnDate == null),Messages.ListedByRentalUndelivered);
+            return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll(r => r.ReturnDate == null), Messages.ListedByRentalUndelivered);
         }
 
         public IDataResult<List<RentalDetailDto>> GetRentalDetails()
@@ -80,5 +83,33 @@ namespace Busines.Concrete
             _rentalDal.Update(rental);
             return new SuccessResult(Messages.RentalUpdated);
         }
-    }    
+
+        private IResult FindeksScoreCheck(int customerId, int carId)
+        {
+            var customerFindexPoint = _customerService.GetByCustomerId(customerId).Data.FindexPoint;
+
+            if (customerFindexPoint == 0)
+                return new ErrorResult(Messages.CustomerFindexPointIsZero);
+
+            var carFindexPoint = _carService.GetByCarId(carId).Data.FindexPoint;
+
+            if (customerFindexPoint < carFindexPoint)
+                return new ErrorResult(Messages.CustomerScoreIsInsufficient);
+
+            return new SuccessResult();
+        }
+
+        private IResult CarRentedCheck(Rental rental)
+        {
+            var rentalledCars = _rentalDal.GetAll(
+                r => r.CarId == rental.CarId && (
+                r.ReturnDate == null ||
+                r.ReturnDate < DateTime.Now)).Any();
+
+            if (rentalledCars)
+                return new ErrorResult(Messages.NotYetSuitableforReRental);
+
+            return new SuccessResult();
+        }
+    }
 }

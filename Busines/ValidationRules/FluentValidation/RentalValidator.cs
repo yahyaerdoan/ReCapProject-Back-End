@@ -18,7 +18,6 @@ namespace Busines.ValidationRules.FluentValidation
             RuleFor(r => r.ReturnDate).NotEmpty();
             RuleFor(r => r.ReturnDate).GreaterThan(DateTime.Now);
             RuleFor(r => r.ReturnDate).GreaterThan(r => r.RentDate);
-
         }
     }
 }

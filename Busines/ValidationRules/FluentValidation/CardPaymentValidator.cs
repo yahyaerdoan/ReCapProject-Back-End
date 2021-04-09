@@ -6,9 +6,9 @@ using System.Text;
 
 namespace Busines.ValidationRules.FluentValidation
 {
-    public class CardPaymentValidator : AbstractValidator<CardPayment>
+    public class CardValidator : AbstractValidator<Card>
     {
-        public CardPaymentValidator()
+        public CardValidator()
         {
 
             //RuleFor(c => c.CustomerId).NotEmpty();

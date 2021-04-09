@@ -7,7 +7,7 @@ using System.Text;
 
 namespace DateAccess.Concrete.EntityFrameWork
 {
-    public class EfCardPaymentDal : EfEntityRepositoryBase<CardPayment, ReCapDataBasesContext>, ICardPaymentDal
+    public class EfCardDal : EfEntityRepositoryBase<Card, ReCapDataBasesContext>, ICardDal
     {
     }
 }

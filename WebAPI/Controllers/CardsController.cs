@@ -11,19 +11,19 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CardPaymentsController : ControllerBase
+    public class CardsController : ControllerBase
     {
-        private readonly ICardPaymentService _cardPaymentService;
+        private readonly ICardService _CardService;
 
-        public CardPaymentsController(ICardPaymentService cardPaymentService)
+        public CardsController(ICardService CardService)
         {
-            _cardPaymentService = cardPaymentService;
+            _CardService = CardService;
         }
 
         [HttpGet("GetAll")]
         public IActionResult GetAll()
         {
-            var result = _cardPaymentService.GetAll();
+            var result = _CardService.GetAll();
 
             if (result.Success)
             {
@@ -32,10 +32,10 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("GetCardPaymetsByCustomerId")]
-        public IActionResult GetCardPaymetsByCustomerId(int customerId)
+        [HttpGet("GetCardsByCustomerId")]
+        public IActionResult GetCardsByCustomerId(int customerId)
         {
-            var result = _cardPaymentService.GetCardPaymetsByCustomerId(customerId);
+            var result = _CardService.GetCardsByCustomerId(customerId);
 
             if (result.Success)
             {
@@ -45,9 +45,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("Add")]
-        public IActionResult Add(CardPayment cardPayment)
+        public IActionResult Add(Card Card)
         {
-            var result = _cardPaymentService.Add(cardPayment);
+            var result = _CardService.Add(Card);
 
             if (result.Success)
             {
@@ -57,9 +57,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPut("Update")]
-        public IActionResult Update(CardPayment cardPayment)
+        public IActionResult Update(Card Card)
         {
-            var result = _cardPaymentService.Update(cardPayment);
+            var result = _CardService.Update(Card);
 
             if (result.Success)
             {
@@ -69,9 +69,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpDelete("Delete")]
-        public IActionResult Delete(CardPayment cardPayment)
+        public IActionResult Delete(Card Card)
         {
-            var result = _cardPaymentService.Delete(cardPayment);
+            var result = _CardService.Delete(Card);
 
             if (result.Success)
             {

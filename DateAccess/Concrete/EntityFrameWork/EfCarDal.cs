@@ -39,7 +39,8 @@ namespace DateAccess.Concrete.EntityFrameWork
                                  CategoryId = cgt.CategoryId,
                                  CategoryName = cgt.CategoryName, 
                                  ImagePath = (from i in context.Images where i.CarId == ca.CarId select i.ImagePath).ToList(),
-                                 ModelYear = ca.ModelYear
+                                 ModelYear = ca.ModelYear,
+                                 FindexPoint = ca.FindexPoint,
                              };
 
                 return filter == null ? result.ToList() : result.Where(filter).ToList();

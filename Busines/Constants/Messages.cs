@@ -81,13 +81,15 @@ namespace Busines.Constants
         public static string CategoryUpdated = "Kategori Güncellendi";
         public static string ListedByCategorydId = "Kategori Id'ye Göre Listelendi";
         public static string CreditCardNumberAllreadyExists = "Kredi Kartı Numarası Mevcut";
-        public static string CardPaymentsUpdated = "Kredi Kartı Numarası ile Ödeme işlemi Güncellendi";
-        public static string CardPaymentsDeleted = "Kredi Kartı Numarası ile Ödeme işlemi Silindi";
-        public static string CardPaymentsAdded = "Kredi Kartı Numarası ile Ödeme işlemi Eklendi";
+        public static string CardsUpdated = "Kredi Kartı Numarası ile Ödeme işlemi Güncellendi";
+        public static string CardsDeleted = "Kredi Kartı Numarası ile Ödeme işlemi Silindi";
+        public static string CardsAdded = "Kredi Kartı Numarası ile Ödeme işlemi Eklendi";
         public static string GetCardPaymetsByCustomerIdListed = "Kredi Kartı Numarası ile Ödeme işlemi Müşteri Numarasına Göre Listelendi";
-        public static string CardPaymentsListed = "Kredi Kartı Numarası ile Ödeme işlemleri Listelendi";
+        public static string CardsListed = "Kredi Kartı Numarası ile Ödeme işlemleri Listelendi";
         public static string ListedByFilter = "Araçlar Filitreye Göre Listelendi";
-        public static string RentalInValid ;
+        public static string RentalInValid ="Kiralama için uygun değil" ;
         public static string CarIsRentable ="Kiralanabilir";
+        public static string CustomerFindexPointIsZero = "Findex Puanınız Bulunamadı!";
+        public static string CustomerScoreIsInsufficient = "Findex Puanınız yetersiz!";
     }
 }

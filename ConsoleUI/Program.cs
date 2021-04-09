@@ -35,8 +35,8 @@ namespace ConsoleUI
             }
 
 
-
-            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            /*
+            RentalManager rentalManager = new RentalManager(new EfRentalDal(), new EfCarDal( ), new EfCustomerDal());
             var result2 = rentalManager.GetRentalDetails();
             foreach (var results in result2.Message)
             {
@@ -51,7 +51,7 @@ namespace ConsoleUI
                     results.CarId, results.CarName, results.FirstName, results.LastName, results.CompanyName, results.RentDate, results.ReturnDate);
             }
 
-
+            */
 
 
 

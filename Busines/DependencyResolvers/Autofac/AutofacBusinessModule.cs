@@ -50,8 +50,8 @@ namespace Busines.DependencyResolvers.Autofac
             builder.RegisterType<AuthManager>().As<IAuthService>().SingleInstance();
             builder.RegisterType<JwtHelper>().As<ITokenHelper>().SingleInstance();
 
-            builder.RegisterType<CardPaymentManager>().As<ICardPaymentService>().SingleInstance();
-            builder.RegisterType<EfCardPaymentDal>().As<ICardPaymentDal>().SingleInstance();
+            builder.RegisterType<CardManager>().As<ICardService>().SingleInstance();
+            builder.RegisterType<EfCardDal>().As<ICardDal>().SingleInstance();
 
 
             //builder.RegisterType<HttpContextAccessor>().As<IHttpContextAccessor>();

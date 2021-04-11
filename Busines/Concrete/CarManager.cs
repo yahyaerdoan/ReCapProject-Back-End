@@ -95,7 +95,7 @@ namespace Busines.Concrete
         [CacheAspect]
         public IDataResult<List<Car>> GetAll()
         {
-            if (DateTime.Now.Hour == 03)
+            if (DateTime.Now.Hour == 06)
             {
                 return new ErrorDataResult<List<Car>>(Messages.MaintenanceTime);
             }
@@ -110,7 +110,7 @@ namespace Busines.Concrete
 
         public IDataResult<List<CarDetailDto>> GetCarsDetails()
         {
-            if (DateTime.Now.Hour == 03)
+            if (DateTime.Now.Hour == 06)
             {
 
                 return new ErrorDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(), Messages.MaintenanceTime);

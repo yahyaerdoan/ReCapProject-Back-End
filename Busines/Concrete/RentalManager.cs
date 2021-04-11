@@ -31,7 +31,7 @@ namespace Busines.Concrete
         public IResult Add(Rental rental)
         {
             var result = BusinessRules.Run(CarRentedCheck(rental),
-                FindeksScoreCheck(rental.CustomerId, rental.CarId), 
+                FindexScoreCheck(rental.CustomerId, rental.CarId), 
                 UpdateCustomerFindexPoint(rental.CustomerId, rental.CarId));
 
             if (result != null)
@@ -67,16 +67,13 @@ namespace Busines.Concrete
             return new SuccessDataResult<List<RentalDetailDto>>(_rentalDal.GetRentalDetails(), Messages.RentalListed);
         }
 
-        public IResult IsRentable(Rental rental)
+        public IResult IsRentable(int carId)
         {
 
             var result = _rentalDal.GetAll();
-            if (result.Where(r => r.CarId == rental.CarId
-                    && r.ReturnDate >= rental.RentDate
-                    && r.RentDate <= rental.ReturnDate).Any())
+            if (result.Where(r => r.CarId == carId && r.ReturnDate == null ).Any())
                 return new ErrorResult(Messages.RentalInValid);
             return new SuccessResult(Messages.CarIsRentable);
-
         }
 
         public IResult Update(Rental rental)
@@ -85,7 +82,7 @@ namespace Busines.Concrete
             return new SuccessResult(Messages.RentalUpdated);
         }
 
-        private IResult FindeksScoreCheck(int customerId, int carId)
+        public IResult FindexScoreCheck(int customerId, int carId)
         {
             var customerFindexPoint = _customerService.GetByCustomerId(customerId).Data.FindexPoint;
 

@@ -88,10 +88,21 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
-        [HttpPost("IsRentable")]
-        public IActionResult IsRentable(Rental rental)
+        [HttpGet("IsRentable")]
+        public IActionResult IsRentable(int carId)
         {
-            var result = _rentalService.IsRentable(rental);
+            var result = _rentalService.IsRentable(carId);
+
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        [HttpGet("FindexScoreCheck")]
+        public IActionResult FindexScoreCheck(int customerId, int carId)
+        {
+            var result = _rentalService.FindexScoreCheck(customerId, carId);
 
             if (result.Success)
             {

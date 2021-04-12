@@ -30,12 +30,14 @@ namespace Busines.Concrete
         //[ValidationAspect(typeof(RentalValidator))]
         public IResult Add(Rental rental)
         {
-            var result = BusinessRules.Run(CarRentedCheck(rental),
+            var result = BusinessRules.Run(/*CarRentedCheck(rental),*/ 
                 FindexScoreCheck(rental.CustomerId, rental.CarId), 
                 UpdateCustomerFindexPoint(rental.CustomerId, rental.CarId));
 
             if (result != null)
+            {
                 return result;
+            }
 
             _rentalDal.Add(rental);
             return new SuccessResult(Messages.RentalAdded);
@@ -75,6 +77,13 @@ namespace Busines.Concrete
                 return new ErrorResult(Messages.RentalInValid);
             return new SuccessResult(Messages.CarIsRentable);
         }
+        public IResult CarIsReturned(int carId)
+        {
+            Rental result = _rentalDal.Get(r => r.CarId == carId && r.ReturnDate == null);
+            result.ReturnDate = DateTime.Now;
+            _rentalDal.Update(result);
+            return new SuccessResult(Messages.RentalReturned);
+        }
 
         public IResult Update(Rental rental)
         {
@@ -97,18 +106,18 @@ namespace Busines.Concrete
             return new SuccessResult();
         }
 
-        private IResult CarRentedCheck(Rental rental)
-        {
-            var rentalledCars = _rentalDal.GetAll(
-                r => r.CarId == rental.CarId && (
-                r.ReturnDate == null ||
-                r.ReturnDate < DateTime.Now)).Any();
+        //private IResult CarRentedCheck(Rental rental)
+        //{
+        //    var rentalledCars = _rentalDal.GetAll(
+        //        r => r.CarId == rental.CarId && (
+        //        r.ReturnDate == null ||
+        //        r.ReturnDate < DateTime.Now)).Any();
 
-            if (rentalledCars)
-                return new ErrorResult(Messages.NotYetSuitableforReRental);
+        //    if (rentalledCars)
+        //        return new ErrorResult(Messages.NotYetSuitableforReRental);
 
-            return new SuccessResult();
-        }
+        //    return new SuccessResult();
+        //}
         private IResult UpdateCustomerFindexPoint(int customerId, int carId)
         {
             var customer = _customerService.GetByCustomerId(customerId).Data;

@@ -26,7 +26,7 @@ namespace DateAccess.Concrete.EntityFrameWork
                              on cstmr.UserId equals u.UserId
                              select new RentalDetailDto
                              {
-                                 CarId = r.RentalId,
+                                 CarId = c.CarId,
                                  CarName = c.CarName,
                                  FirstName = u.FirstName,
                                  LastName = u.LastName,
@@ -34,8 +34,7 @@ namespace DateAccess.Concrete.EntityFrameWork
                                  RentDate = r.RentDate,
                                  ReturnDate = r.ReturnDate,
                                  BrandModel = b.BrandModel,
-                                 BrandName = b.BrandName,
-                                 DailyPrice = r.DailyPrice           
+                                 BrandName = b.BrandName      
                                
                                  
                              };

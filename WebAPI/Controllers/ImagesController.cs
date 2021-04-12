@@ -41,7 +41,7 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
-        [HttpDelete("Delete")]
+        [HttpPost("Delete")]
         public IActionResult Delete([FromForm] Image image)
         {
            

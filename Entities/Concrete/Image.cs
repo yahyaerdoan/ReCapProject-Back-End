@@ -16,3 +16,4 @@ namespace Entities.Concrete
         public DateTime Date { get; set; }
     }
 }
+

@@ -18,5 +18,6 @@ namespace Busines.Abstract
         IResult Delete(Rental rental);
         IResult IsRentable(int carId);
         IResult FindexScoreCheck(int customerId, int carId);
+        IResult CarIsReturned(int carId);
     }       
 }

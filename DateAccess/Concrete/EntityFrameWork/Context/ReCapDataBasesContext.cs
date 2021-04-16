@@ -11,8 +11,8 @@ namespace DateAccess.Concrete.EntityFrameWork
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server =(localdb)\MSSQLLocalDb;Database=ReCapDataBases;Trusted_Connection=true");
-        }
+            optionsBuilder.UseSqlServer(@"Server =YAHYAERDOGAN\SQLEXPRESS;Database=ReCapDataBases;Trusted_Connection=true");
+        }      
         public DbSet<Car> Cars { get; set; }
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Color> Colors { get; set; }

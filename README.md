@@ -1,8 +1,9 @@
 # ReCapProject-Back-End
 
-# Car Rental Company - Rent  A Car
+# Rent A Car Project
 
 This project is an online car rental project.
+(Bu proje bir online araç kiralama projesidir.)
 
 
 ### Tecnologies
@@ -25,4 +26,4 @@ This project is an online car rental project.
 
 ##Database
 
-<img src="https://github.com/kubraterzi/ReCapProject-CarRentalCompany/blob/master/ImagesForGithub/Databases.PNG" />
+<img src="https://github.com/yahyaerdoan/ReCapProject-RentACarProject/blob/master/ImagesForGithub/Databases.PNG" />

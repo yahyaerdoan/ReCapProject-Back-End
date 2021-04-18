@@ -15,7 +15,7 @@ Bu proje bir online araç kiralama projesidir.
 - **DataAccess** : Projede veritabanımız ile bağlantımızı kurduğumuz katmanımızdır.
 - **Entities** : Projede veritabanındaki tablolarımızın projemizde nesne olarak kullanılması için oluşturulmuş olup, içerisinde DTO nesneleri de yer almaktadır.
 - **WebAPI** : Projenin Restful API katmanıdır. İçerisinde kullanılan metodlar; Get, Post, Put, Delete metodlarıdır.
-- 
+
 ## Kullanılan Teknolojiler
 
 - MsSql

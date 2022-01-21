@@ -22,6 +22,7 @@ using Microsoft.AspNetCore.Http;
 using Core.Utilities.IoC;
 using Core.Extensions;
 using Core.DpendencyResolvers;
+using Microsoft.OpenApi.Models;
 
 namespace WebAPI
 {
@@ -66,7 +67,7 @@ namespace WebAPI
             //services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             //Eðer birisi senden IHttpContextAccessor isterse ona HttpContextAccessor ver.
 
-            
+
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowOrigin",
@@ -99,6 +100,10 @@ namespace WebAPI
             //ServiceTool.Create(services);
             //ServisTool local olarak baðýmlýlýk çözümledi. Baðýmlýlýk çözümleme iþini core taþýdðýmýz için oradan iþlem yapacaðýz.
 
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApi", Version = "v1" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -107,6 +112,9 @@ namespace WebAPI
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebApi"));
+
             }
             app.ConfigureCustomExceptionMiddleware();
 
